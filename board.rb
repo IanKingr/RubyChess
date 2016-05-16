@@ -137,15 +137,6 @@ class Board
     @grid[x][y] = value
   end
 
-
-  # def render
-  #   a = Display.new(self)
-  #   while true
-  #     a.render
-  #     a.get_input
-  #   end
-  # end
-
   def in_bounds?(pos)
     possible_dim = (0...@grid.size).to_a
     x,y = pos
