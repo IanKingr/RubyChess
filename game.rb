@@ -113,10 +113,6 @@ class Game
     end
     board[*end_pos] = piece_to_add
   end
-
-  # def can_castle?(piece)
-  #   not(piece.left_castle.empty?) || not(piece.right_castle.empty?)
-  # end
 end
 
 class Player

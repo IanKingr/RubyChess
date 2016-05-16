@@ -1,3 +1,5 @@
+# Movable module determines movement logic available for each piece depending on the hash keys
+# they can pass to this module.
 
 module Movable
   DIAGONAL = [
@@ -18,6 +20,8 @@ module Movable
     [2,-1]
   ]
 
+
+  # Returns an array with all possible moves that a piece can make
   def possible_moves
     retr = []
     retr += forward(pos,motions[:forward]) if motions[:forward]
@@ -29,6 +33,7 @@ module Movable
     retr
   end
 
+  # Logic for if a piece can move linearly forward (e.g. Pawn)
   def forward(pos,move_num)
     frwrd_arr = []
     x,y = pos
@@ -46,17 +51,7 @@ module Movable
     frwrd_arr
   end
 
-  # def add_positions(check_pos, positions)
-  #
-  #   if board[*check_pos].color == self.color
-  #     break
-  #   else
-  #     positions << check_pos if on_board?(check_pos)
-  #   end
-  #   break if board[*check_pos].color != :blank
-  #   positions
-  # end
-
+  # Logic for if a piece can move linearly backward (e.g. Rook)
   def backward(pos,move_num)
     bkwrd_arr = []
     x,y = pos
@@ -75,6 +70,7 @@ module Movable
     bkwrd_arr
   end
 
+  # Logic for if a piece can move horizontally (e.g. Rook)
   def horizontal(pos,move_num)
     hrzn_arr = []
     x,y = pos
@@ -94,6 +90,7 @@ module Movable
     hrzn_arr
   end
 
+  # Logic for if a piece can move diagonally (e.g. Bishop)
   def diagonal(pos,move_num)
     dgnl_arr = []
     x,y = pos
@@ -108,6 +105,7 @@ module Movable
     dgnl_arr
   end
 
+  # Logic for Knight piece moving in an L ("ell")
   def ell(pos)
     ell_arr = []
     x,y = pos
@@ -119,6 +117,7 @@ module Movable
     ell_arr
   end
 
+  # Checks if piece is on the board
   def on_board?(pos)
     possible_dim = (0...board.grid.size).to_a
     x,y = pos

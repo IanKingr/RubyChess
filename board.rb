@@ -20,6 +20,7 @@ class Board
     pieces
   end
 
+  # Populates the board at the start of the game with all chess pieces
   def populate
     row_ind = 0
     2.times do
@@ -38,6 +39,7 @@ class Board
     end
   end
 
+  # Deeply duplicates the pieces on the board and places them on a new board
   def dup
     duped = Board.new(false)
     rows.each_with_index do |row,i|
@@ -55,6 +57,7 @@ class Board
     self
   end
 
+  # Checks if the color is in check
   def in_check?(color)
     opp_pieces = get_pieces.select { |piece| piece.color != color}
     opp_pieces.each do |piece|
@@ -67,6 +70,7 @@ class Board
     false
   end
 
+  # Logic for castling
   def castle(end_pos)
     x,y = end_pos
     if y == 6
@@ -76,6 +80,7 @@ class Board
     end
   end
 
+  # Checks if the color is in checkmate
   def checkmate?(color)
     return false unless in_check?(color)
     our_pieces = get_pieces.select { |piece| piece.color == color}
@@ -91,6 +96,7 @@ class Board
     true
   end
 
+  # Used to populate the rows of pawns at the start of the game
   def pawn_row(start_ind)
     row = []
     start_ind == 1 ? color = :black : color = :white
@@ -105,6 +111,7 @@ class Board
     @grid
   end
 
+  # Used to populate the rows of special chess pieces at the start of the game
   def special_row(start_row)
     start_row == 0 ? color = :black : color = :white
     ind_arr = (0..7).to_a
@@ -120,6 +127,7 @@ class Board
     ]
   end
 
+  # Checks if a piece is being moved to a valid position
   def valid_move?(pos1,pos2)
     x,y = pos1
     duped = self.dup

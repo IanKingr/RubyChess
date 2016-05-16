@@ -17,10 +17,6 @@ class Pieces
     @moved = true
   end
 
-  def would_check?
-    #does new position open king to check
-  end
-
   def moves
     self.possible_moves
   end

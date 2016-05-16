@@ -1,3 +1,5 @@
+# Empty spaces on the board are filled with this object
+
 class EmptySpace
   attr_reader :board,:pos,:moved,:color
 
